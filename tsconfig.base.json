@@ -18,6 +18,8 @@
       "@server/shared": ["libs/shared/src/index.ts"],
       "@server/shared/dto": ["libs/shared/src/lib/dto"],
       "@server/shared/schema": ["libs/shared/src/lib/schema"],
+      "@server/shared/guard": ["libs/shared/src/lib/guard"],
+      "@server/shared/decorators": ["libs/shared/src/lib/decorators"],
     }
   },
   "exclude": ["node_modules", "tmp"]

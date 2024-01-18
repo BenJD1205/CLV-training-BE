@@ -1,6 +1,6 @@
 
-import { RegisterUserDto } from '@server/shared/dto';
-import { Controller, Inject, Post, Body, Logger, Get, BadRequestException } from '@nestjs/common';
+import { RegisterUserDto,LoginUserDto } from '@server/shared/dto';
+import { Controller, Inject, Post, Body, BadRequestException } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { catchError } from 'rxjs';
 
@@ -19,8 +19,12 @@ export class AuthController {
         }))
     }
 
-    @Get('get-user')
-    async getUser(){
-        return true;
+    @Post('login')
+    async login(@Body() loginUserDto: LoginUserDto):Promise<any>{
+        return this.userService.send({
+            cmd:'login',
+        }, loginUserDto).pipe(catchError((err) => {
+            throw new BadRequestException(err);
+        }))
     }
 }

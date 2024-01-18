@@ -26,7 +26,7 @@ export class User {
   @Prop()
   gender: string;
 
-  @Prop()
+  @Prop({default:'User'})
   role: string;
 
   @Prop()

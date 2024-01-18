@@ -1,7 +1,8 @@
-import { Controller } from '@nestjs/common';
+import { Controller, UseGuards } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { RegisterUserDto,LoginUserDto } from '@server/shared/dto';
 import { AuthService } from './auth.service';
+import { JwtGuard } from './jwt.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -17,8 +18,11 @@ export class AuthController {
         return this.authService.login(userDto);
     }
 
-    @MessagePattern({cmd:'get-all-user'})
-    async getAllUser(){
-        console.log('Hello users')
+    @MessagePattern({ cmd: 'verify-jwt' })
+    // @UseGuards(JwtGuard)
+    async verifyJwt(
+        @Payload() payload: { jwt: string },
+    ) {
+        return this.authService.verifyJwt(payload.jwt);
     }
 }
