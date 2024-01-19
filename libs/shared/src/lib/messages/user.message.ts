@@ -1,0 +1,15 @@
+export const AuthMessage = {
+    REGISTER:'REGISTER',
+    LOGIN: 'LOGIN',
+}
+
+export const UserMessage = {
+    CREATE:'CREATE',
+    UPDATE:'UPDATE',
+    DELETE:'DELETE',
+    GET:'GET',
+    GET_PROFILE:'GET_PROFILE',
+    CHANGE_PROFILE:'CHANGE_PROFILE',
+    GET_ALL:'GET_ALL',
+    CHANGE_PASSWORD:'CHANGE_PASSWORD',
+}

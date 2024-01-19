@@ -2,6 +2,7 @@
 import { RegisterUserDto,LoginUserDto } from '@server/shared/dto';
 import { Controller, Inject, Post, Body, BadRequestException } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
+import {AuthMessage} from '@server/shared/message'
 import { catchError } from 'rxjs';
 
 @Controller({version:'1',path:'auth'})
@@ -13,7 +14,7 @@ export class AuthController {
     @Post('register')
     async register(@Body() registerUserDto: RegisterUserDto):Promise<any>{
         return this.userService.send({
-            cmd:'register',
+            cmd:AuthMessage.REGISTER,
         },registerUserDto).pipe(catchError((err) => {
             throw new BadRequestException(err);
         }))
@@ -22,7 +23,7 @@ export class AuthController {
     @Post('login')
     async login(@Body() loginUserDto: LoginUserDto):Promise<any>{
         return this.userService.send({
-            cmd:'login',
+            cmd: AuthMessage.LOGIN,
         }, loginUserDto).pipe(catchError((err) => {
             throw new BadRequestException(err);
         }))

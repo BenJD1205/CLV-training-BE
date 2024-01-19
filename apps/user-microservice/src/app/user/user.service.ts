@@ -30,4 +30,18 @@ export class UserService {
                 password: hashPassword,
         });
     }
+
+    async update(userDto){
+        const userExist = await this.userRepository.findById(userDto._id)
+        if(!userExist){
+            throw new RpcException('User already exist');
+        }
+        return await this.userRepository.findByIdAndUpdate(userDto._id, {
+            ...userDto,
+        });
+    }
+
+    async delete(userId){
+        return await this.userRepository.deleteOne(userId);
+    }
 }

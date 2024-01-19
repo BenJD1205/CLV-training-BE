@@ -22,6 +22,7 @@
       "@server/shared/decorators": ["libs/shared/src/lib/decorators"],
       "@server/shared/repository": ["libs/shared/src/lib/repository"],
       "@server/shared/enum": ["libs/shared/src/lib/enum"],
+      "@server/shared/message": ["libs/shared/src/lib/messages"],
     }
   },
   "exclude": ["node_modules", "tmp"]

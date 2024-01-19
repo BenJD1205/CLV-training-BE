@@ -1,6 +1,7 @@
 import { Controller, UseGuards } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { RegisterUserDto,LoginUserDto } from '@server/shared/dto';
+import {AuthMessage} from '@server/shared/message'
 import { AuthService } from './auth.service';
 import { JwtGuard } from './jwt.guard';
 
@@ -8,12 +9,12 @@ import { JwtGuard } from './jwt.guard';
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
 
-    @MessagePattern({cmd:'register'})
+    @MessagePattern({cmd:AuthMessage.REGISTER})
     async register(@Payload() createUserDto: RegisterUserDto){
         return this.authService.register(createUserDto);
     }
 
-    @MessagePattern({cmd:'login'})
+    @MessagePattern({cmd: AuthMessage.LOGIN})
     async login (@Payload() userDto: LoginUserDto){
         return this.authService.login(userDto);
     }
