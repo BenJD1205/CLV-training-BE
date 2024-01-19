@@ -19,7 +19,7 @@ export class AuthController {
     }
 
     @MessagePattern({ cmd: 'verify-jwt' })
-    // @UseGuards(JwtGuard)
+    @UseGuards(JwtGuard)
     async verifyJwt(
         @Payload() payload: { jwt: string },
     ) {
