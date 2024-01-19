@@ -1,13 +1,10 @@
 import {
   IsEmail,
-  IsMongoId,
   IsNotEmpty,
-  IsNotEmptyObject,
-  ValidateNested,
+  IsString,
 } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 import mongoose from 'mongoose';
-import { Type } from 'class-transformer';
 
 class CompanyDto {
   @IsNotEmpty()
@@ -39,6 +36,9 @@ export class RegisterUserDto {
 
   @IsNotEmpty({ message: 'Name is required!' })
   name: string;
+}
+
+export class CreateUserDto extends PartialType(RegisterUserDto) {
   @IsNotEmpty({ message: 'Age is required!' })
   age: number;
 
@@ -47,15 +47,10 @@ export class RegisterUserDto {
 
   @IsNotEmpty({ message: 'Address is required!' })
   address: string;
-}
 
-export class CreateUserDto extends PartialType(RegisterUserDto) {
-  @IsNotEmpty({ message: 'Role is required!' })
-  @IsMongoId({ message: 'Role is mongo id' })
-  role: mongoose.Schema.Types.ObjectId;
+  @IsString({message: 'Role is string!'})
+  role: string;
 
-  @IsNotEmptyObject()
-  @ValidateNested()
-  @Type(() => CompanyDto)
-  company: CompanyDto;
+  @IsString({message: 'Office is string!'})
+  office_code: string;
 }

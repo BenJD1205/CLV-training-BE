@@ -32,11 +32,14 @@ export class User {
   @Prop()
   refreshToken: string;
 
-  @Prop({ type: Object })
-  company: {
-    _id: mongoose.Schema.Types.ObjectId;
-    name: string;
-  };
+  @Prop()
+  office_code: string;
+
+  @Prop()
+  country_code: string;
+
+  @Prop()
+  active: boolean;
 
   @Prop({ type: Object })
   createdBy: {
