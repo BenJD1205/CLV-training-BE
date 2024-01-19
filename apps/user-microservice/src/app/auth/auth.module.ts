@@ -9,9 +9,11 @@ import { AuthService } from './auth.service';
 import { JwtGuard } from './jwt.guard';
 import { JwtStrategy } from './jwt-strategy';
 import { UserRepository } from '../repository/user.repository';
+import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
+    UserModule,
     ConfigModule.forRoot(),
     MongooseModule.forFeature([
       { name: User.name, schema: UserSchema },

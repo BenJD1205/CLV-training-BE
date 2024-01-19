@@ -20,6 +20,8 @@
       "@server/shared/schema": ["libs/shared/src/lib/schema"],
       "@server/shared/guard": ["libs/shared/src/lib/guard"],
       "@server/shared/decorators": ["libs/shared/src/lib/decorators"],
+      "@server/shared/repository": ["libs/shared/src/lib/repository"],
+      "@server/shared/enum": ["libs/shared/src/lib/enum"],
     }
   },
   "exclude": ["node_modules", "tmp"]

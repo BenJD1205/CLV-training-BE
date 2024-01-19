@@ -6,6 +6,7 @@ import ms from 'ms'
 import { genSaltSync, hashSync, compareSync } from 'bcryptjs';
 import { UserRepository } from '../repository/user.repository';
 import { RegisterUserDto, LoginUserDto } from '@server/shared/dto';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class AuthService {
@@ -13,6 +14,7 @@ export class AuthService {
         private readonly userRepository: UserRepository,
         private jwtService: JwtService,
         private configService: ConfigService,
+        private userService: UserService
     ){}
 
     getHashPassword = (password: string) => {
@@ -40,17 +42,7 @@ export class AuthService {
     };
 
     async register(userDto:RegisterUserDto){
-        const userExist = await this.userRepository.findByCondition({email: userDto.email})
-        if(userExist){
-            console.log('error')
-            throw new RpcException('User already exist');
-        }
-        const hashPassword = this.getHashPassword(userDto.password);
-        return await this.userRepository.create({
-            ...userDto,
-                password: hashPassword,
-                role:'user',
-        });
+       return await this.userService.create(userDto);
     }
 
     async login(user:LoginUserDto){
