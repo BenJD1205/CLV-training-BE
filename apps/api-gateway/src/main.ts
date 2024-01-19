@@ -7,6 +7,7 @@ import { Logger, VERSION_NEUTRAL, VersioningType, ValidationPipe } from '@nestjs
 import { NestFactory,Reflector } from '@nestjs/core';
 import * as express from 'express';
 import helmet from 'helmet';
+import * as compression from 'compression';
 import { TransformInterceptor, RpcExceptionToHttpExceptionFilter } from './core/interceptors';
 
 import { AppModule } from './app/app.module';
@@ -22,6 +23,7 @@ async function bootstrap() {
     }),
   );
   app.use(helmet())
+  app.use(compression());
   app.use(express.json({ limit: '10mb' }));
   app.use(express.urlencoded({ limit: '10mb', extended: false }));
   app.enableCors({ origin: '*' });
