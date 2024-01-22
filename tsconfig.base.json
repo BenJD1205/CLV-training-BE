@@ -16,13 +16,13 @@
     "baseUrl": ".",
     "paths": {
       "@server/shared": ["libs/shared/src/index.ts"],
-      "@server/shared/dto": ["libs/shared/src/lib/dto"],
-      "@server/shared/schema": ["libs/shared/src/lib/schema"],
-      "@server/shared/guard": ["libs/shared/src/lib/guard"],
       "@server/shared/decorators": ["libs/shared/src/lib/decorators"],
-      "@server/shared/repository": ["libs/shared/src/lib/repository"],
+      "@server/shared/dto": ["libs/shared/src/lib/dto"],
       "@server/shared/enum": ["libs/shared/src/lib/enum"],
+      "@server/shared/guard": ["libs/shared/src/lib/guard"],
       "@server/shared/message": ["libs/shared/src/lib/messages"],
+      "@server/shared/repository": ["libs/shared/src/lib/repository"],
+      "@server/shared/schema": ["libs/shared/src/lib/schema"]
     }
   },
   "exclude": ["node_modules", "tmp"]
