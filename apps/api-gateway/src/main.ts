@@ -7,7 +7,7 @@ import { Logger, VERSION_NEUTRAL, VersioningType, ValidationPipe } from '@nestjs
 import { NestFactory,Reflector } from '@nestjs/core';
 import * as express from 'express';
 import helmet from 'helmet';
-import * as compression from 'compression';
+import compression from 'compression';
 import { TransformInterceptor, RpcExceptionToHttpExceptionFilter } from './core/interceptors';
 
 import { AppModule } from './app/app.module';
