@@ -7,8 +7,18 @@ import { UserService } from './user.service';
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
+    @MessagePattern({cmd:UserMessage.GET_ALL })
+    async getAll(){
+        return this.userService.getAll();
+    }
+
     @MessagePattern({cmd:UserMessage.GET_PROFILE })
     async getProfile(@Payload() userId){
+        return this.userService.getProfile(userId);
+    }
+
+    @MessagePattern({cmd:UserMessage.GET })
+    async getUser(@Payload() userId){
         return this.userService.getProfile(userId);
     }
 

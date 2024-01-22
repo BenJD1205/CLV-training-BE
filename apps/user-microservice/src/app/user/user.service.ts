@@ -15,6 +15,10 @@ export class UserService {
         return hash;
     };
 
+    async getAll(){
+        return await this.userRepository.findAll();
+    }
+
     async getProfile(userId:string){
         return await this.userRepository.findById(userId);
     }
